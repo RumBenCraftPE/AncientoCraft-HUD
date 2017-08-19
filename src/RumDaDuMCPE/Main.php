@@ -9,6 +9,6 @@ class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Li
 	}
 	public function onMove(\pocketmine\event\player\PlayerJoinEvent $event) {
 		$HUD = new HUD($this, $event->getPlayer());
-		$this->getServer()->getScheduler()->schedulerRepeatingTask($HUD, 15);
+		$this->getServer()->getScheduler()->scheduleRepeatingTask($HUD, 15);
 	}
 }
