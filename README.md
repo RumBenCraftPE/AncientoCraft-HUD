@@ -1,2 +1,1 @@
-# AncientoCraft-HUD
-This is a HUD plugin done for AncientCraftPE
+/root/GitHub/AncientoCraft-HUD/README.md
