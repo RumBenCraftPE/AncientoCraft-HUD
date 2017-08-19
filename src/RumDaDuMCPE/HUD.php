@@ -14,8 +14,8 @@ class HUD extends \pocketmine\scheduler\PluginTask {
 		$eco = $this->plugin->getServer()->getPluginManager()->getPlugin("EconomyAPI");
 		$facerror = "§cUnable to load HUD.\n§4PowerFactions was not found in your plugins.";
 		$ecoerror = "§cUnable to load HUD.\n§4EconomyAPI was not found in your plugins.";
-		if (exists($fac)) {
-			if (exists($eco)) {
+		if (file_exists($fac)) {
+			if (file_exists($eco)) {
 				$bal = $eco->myMoney($this->player);
 				$name = $fac->getPlayerFaction($this->player);
 				$power = $fac->getFactionPower($fac);
@@ -54,7 +54,9 @@ class HUD extends \pocketmine\scheduler\PluginTask {
 							);
 			} else {
 				$this->player->sendPopup($ecoerror);
+			}
 		} else {
 			$this->player->sendPopup($facerror);
+		}
 	}
 }

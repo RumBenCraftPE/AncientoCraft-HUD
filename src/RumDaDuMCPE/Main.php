@@ -4,7 +4,7 @@ namespace RumDaDuMCPE;
 
 class Main extends \pocketmine\plugin\PluginBase implements \pocketmine\event\Listener {
 	public function onEnable() {
-		$this->getServer()->getPluginManager()->registerEvent($this, $this);
+		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 		$this->getServer()->getLogger()->info("§a>> §l§bHUD §r§eEnabled!");
 	}
 	public function onMove(\pocketmine\event\player\PlayerJoinEvent $event) {
