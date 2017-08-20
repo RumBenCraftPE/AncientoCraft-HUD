@@ -10,20 +10,21 @@ class HUD extends \pocketmine\scheduler\PluginTask {
 	}
 
 	public function onRun($tick) {
-		$fac = $this->plugin->getServer()->getPluginManager()->getPlugin("PowerFactions");
+		$fac = $this->plugin->getServer()->getPluginManager()->getPlugin("FactionsPro");
 		$eco = $this->plugin->getServer()->getPluginManager()->getPlugin("EconomyAPI");
-		$facerror = "§cUnable to load HUD.\n§4PowerFactions was not found in your plugins.";
+		$facerror = "§cUnable to load HUD.\n§4FactionsPro was not found in your plugins.";
 		$ecoerror = "§cUnable to load HUD.\n§4EconomyAPI was not found in your plugins.";
-		if (file_exists($fac)) {
-			if (file_exists($eco)) {
-				$bal = $eco->myMoney($this->player);
-				$name = $fac->getPlayerFaction($this->player);
-				$power = $fac->getFactionPower($fac);
-				$level = $this->player->getLevel()->getName();
-				$x = (int)$this->player->getX();
-				$y = (int)$this->player->getY();
-				$z = (int)$this->player->getZ();
-				switch($this->player->getDirection()) {
+		if ($this->player->isOnline()) {
+			if ($fac !== null) {
+				if ($eco !== null) {
+					$money = $eco->myMoney($this->player);
+					$name = $fac->getPlayerFaction($this->player);
+					$power = $fac->getFactionPower($name);
+					$level = $this->player->getLevel()->getName();
+					$x = (int)$this->player->getX();
+					$y = (int)$this->player->getY();
+					$z = (int)$this->player->getZ();
+					switch($this->player->getDirection()) {
 					case 0:
 					$direction = "South";
 					break;
@@ -43,20 +44,22 @@ class HUD extends \pocketmine\scheduler\PluginTask {
 					$direction = "Unable to fetch dir.";
 					break;
 				}
-				$this->player->sendPopup(
-							 "> §eYou are playing on §l§dAncientoPE§r§a Factions <". //Line 1
-							 "\n". //Line Break
-							 "§eCheck us out: §l§cAncientoCraft.us". //Line 2
-							 "\n". //Line Break
-							 "§eLocation: §l§a".$level."§r §7- §l§a".$x.", ".$y.", ".$z." §8| §a§l$".$money. //Line 3
-							 "\n".
-							 "§bFaction: §l§e".$fac."§r§8 | §bPower: §l§c".$power //Line 4
-							);
+					$this->player->sendPopup(
+								 "> §eYou are playing on §l§dAncientoPE§r§a Factions <". //Line 1
+								 "\n". //Line Break
+								 "§eCheck us out: §l§cAncientoCraft.us". //Line 2
+								 "\n". //Line Break
+								 "§eLocation: §l§a".$level."§r §7- §l§a".$x.", ".$y.", ".$z." §8| §a§l$".$money. //Line 3
+								 "\n".
+								 "§bFaction: §l§e".$name.
+								 "§r§8 | §bPower: §l§c".$power //Line 4
+								);
+				} else {
+					$this->player->sendPopup($ecoerror);
+				}
 			} else {
-				$this->player->sendPopup($ecoerror);
+				$this->player->sendPopup($facerror);
 			}
-		} else {
-			$this->player->sendPopup($facerror);
 		}
 	}
 }
