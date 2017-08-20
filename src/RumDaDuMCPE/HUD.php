@@ -1,4 +1,4 @@
-[B<?php
+<?php
 
 namespace RumDaDuMCPE;
 
