@@ -18,7 +18,7 @@ class HUD extends \pocketmine\scheduler\PluginTask {
 			if ($fac !== null) {
 				if ($eco !== null) {
 					$money = $eco->myMoney($this->player);
-					$name = $fac->getPlayerFaction($this->player);
+					$name = $fac->getPlayerFaction($this->player->getName());
 					$power = $fac->getFactionPower($name);
 					$level = $this->player->getLevel()->getName();
 					$x = (int)$this->player->getX();
