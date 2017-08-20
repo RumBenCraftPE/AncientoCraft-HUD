@@ -1,4 +1,4 @@
-<?php
+[B<?php
 
 namespace RumDaDuMCPE;
 
@@ -45,13 +45,13 @@ class HUD extends \pocketmine\scheduler\PluginTask {
 					break;
 				}
 					$this->player->sendPopup(
-								 "> §eYou are playing on §l§dAncientoPE§r§a Factions <". //Line 1
+								 "§7> §eYou are playing on §l§dAncientoPE§r§a Factions §r§7<". //Line 1
 								 "\n". //Line Break
 								 "§eCheck us out: §l§cAncientoCraft.us". //Line 2
 								 "\n". //Line Break
 								 "§eLocation: §l§a".$level."§r §7- §l§a".$x.", ".$y.", ".$z." §8| §a§l$".$money. //Line 3
 								 "\n".
-								 "§bFaction: §l§e".$name.
+								 "§r§bFaction: §l§c".$name.
 								 "§r§8 | §bPower: §l§c".$power //Line 4
 								);
 				} else {
